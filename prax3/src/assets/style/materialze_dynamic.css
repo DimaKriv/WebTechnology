@@ -1,0 +1,13 @@
+.input__registration > .select-wrapper input.select-dropdown:focus, .input__registration > .select-wrapper input.select-dropdown {
+  border: solid;
+  border-color: #EDB808;
+  border-radius: 4px;
+  margin-top: -4px;
+  box-shadow: none;
+}
+
+.input__registration > .select-wrapper .caret {
+  fill: #EDB808;
+}
+
+/*# sourceMappingURL=materialze_dynamic.css.map */

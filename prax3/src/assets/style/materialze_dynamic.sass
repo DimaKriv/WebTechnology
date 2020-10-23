@@ -1,0 +1,17 @@
+$primary-color: #EDB808
+
+%input-design
+  border: solid
+  border-color: $primary-color
+  border-radius: 4px
+  margin-top: -4px
+  box-shadow: none
+
+.input__registration
+  & > .select-wrapper
+    input.select-dropdown
+      @extend %input-design
+      &:focus
+        @extend %input-design
+    .caret
+      fill: $primary-color

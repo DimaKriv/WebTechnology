@@ -1,0 +1,251 @@
+@use "sass:color"
+
+$primary-color: #EDB808
+$secondary-color: #312F2F
+$secondary-text: #FFFFFF
+$primary-text: #000000
+$neutral-grey: #C4C4C4
+
+%primary-theme
+  color: $primary-text
+  background-color: $primary-color
+  font-size: 20px
+
+.navbar__menu--small
+  @extend %primary-theme
+
+%mesage-shape
+  border-radius: 24px
+  align-self: center
+
+%mesage-style
+  color: $primary-text
+
+
+.message--central
+  @extend %mesage-shape
+  @extend %mesage-style
+
+
+%container__shape
+  height: 100%
+  display: flex
+  flex-direction: column
+  align-content: stretch
+
+.container--height
+  height: 100%
+
+.container__source
+  @extend %container__shape
+  background-image: url("img/theme_gps.jpg")
+
+.container__sub--central
+  @extend %container__shape
+  justify-content: center
+
+%button-shape
+  height: 52px
+  width: 201px
+  border-radius: 200px
+
+@mixin text-style
+  font-family: Roboto
+  font-style: normal
+  font-weight: bold
+  font-size: 24px
+
+.text--usual
+  @include text-style
+  text-align: center
+
+nav .text__logo--black
+      @extend .text--usual
+      color: $primary-text
+      left: 50%
+
+@mixin button-style($background, $color)
+  @include text-style
+  background-color: $background
+  color: $color
+
+.button__primary
+  @extend %button-shape
+  @include button-style($primary-color, $primary-text)
+
+.button__secondary
+  @extend %button-shape
+  @include button-style($secondary-color, $secondary-text)
+
+.button__primary--small-right-align
+  @extend .button__primary
+  position: relative
+  float: right
+  height: 38px
+
+.button__primary--lg-width
+  @extend .button__primary
+  width: 300px
+
+.button--extra-width
+  width: 375px
+
+
+.button__secondary--small
+  @include button-style($secondary-color, $secondary-text)
+  width: 117px
+  height: 31px
+  border-radius: 200px
+  font-size: 17px
+  &:focus
+    background-color: color.scale($secondary-color, $lightness: 30%)
+
+@mixin on-hover($button-name, $color)
+  .#{$button-name}:hover
+    background-color: color.scale($color, $lightness: 30%)
+
+@mixin on-visited($button-name, $color)
+  .#{$button-name}:visited
+    background-color: color.scale($color, $lightness: 30%)
+
+@include on-hover("button__primary", $primary-color)
+@include on-hover("button__secondary", $secondary-color)
+@include on-hover("button__secondary--small", $secondary-color)
+@include on-visited("button__primary", $primary-color)
+@include on-visited("button__secondary", $secondary-color)
+@include on-hover("button__secondary--small", $secondary-color)
+
+.div__delimeter--hidden
+ visibility: hidden
+
+.div__delimeter--lg-height
+  font-size: 49px
+
+%input-design
+  border: solid
+  border-color: $primary-color
+  border-radius: 4px
+  margin-top: -4px
+  box-shadow: none
+
+
+.input__registration input[type=text]
+  @extend %input-design
+
+.input__registration input[type=text]:not([readonly]):not(.browser-default):focus
+  @extend %input-design
+  box-shadow: none
+
+.input__registration
+ & > input[type=text]:not([readonly]):not(.browser-default)
+  @extend %input-design
+  box-shadow: none
+  &:focus
+   @extend %input-design
+  &:valid
+    @extend %input-design
+  &:invalid
+    @extend %input-design
+    border-color: red
+ & > .select-wrapper
+   input.select-dropdown
+    @extend %input-design
+    &:focus
+      @extend %input-design
+   .caret
+      fill: $primary-color
+
+
+.input__label
+  margin-left: 14px
+  padding-left: 4px
+  padding-right: 4px
+  padding-bottom: 4px
+  color: $primary-color
+  background-color: white
+
+.label__select
+  z-index: 2
+
+.text__input--usual
+    @extend .text--usual
+    margin-top: 17px
+
+.container__source--border
+  padding: 5px
+  margin: 10px
+  background-color: white
+
+.container__source--border-full
+  @extend .container__source--border
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+
+.div__payment
+  display: none
+
+.div__payment--active
+  display: initial
+
+.container__map
+  height: 316px
+  margin: 10px
+
+.chip--primary
+  background-color: $primary-color
+
+.select__filter
+  & > .select-wrapper
+   .caret
+      fill: $primary-color
+      z-index: 1
+   input.select-dropdown
+    border-color: $primary-color
+    background-color: $neutral-grey
+    border-radius: 4px 4px 0px 0px
+    & > :focus
+      border-color: color.scale($primary-color, $lightness: 30%)
+      background-color: $neutral-grey
+      border-radius: 4px 4px 0px 0px
+
+.filter--min-height
+  min-height: 70px
+
+.img__product
+  width: 50px
+  height: 50px
+
+$list-product: 'cabage.jpg', 'beef.jpg','koor.png', 'pasta.jpg', 'cabage_beef.jpg'
+
+@mixin get_products($list)
+ $counter: 0
+ @each $product in $list
+  .img__product--#{$counter}
+    background-size: cover
+    background-repeat: no-repeat
+    background-image: url("../assets/img/#{$product}")
+
+  $counter: $counter + 1
+
+@include get_products($list-product)
+
+.button--font-small
+  font-size: 16px
+
+.element__gap
+  margin-top: 10px
+
+.list__box
+  border: solid
+
+.nav__tab--black
+ & > ul.tabs.tabs-transparent
+  & > li.tab
+   & > a
+    color: grey
+   & > a:hover
+    color: $primary-text
+   & > a.active
+     color: $primary-text
+

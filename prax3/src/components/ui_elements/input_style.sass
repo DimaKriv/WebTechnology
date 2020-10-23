@@ -1,0 +1,58 @@
+@import "../text_style"
+
+$primary-color: #EDB808
+
+
+%input-design
+  border: solid
+  border-color: $primary-color
+  border-radius: 4px
+  margin-top: -4px
+  box-shadow: none
+  margin-bottom: 0
+
+
+.input__registration input[type=text]
+  @extend %input-design
+
+.input__registration input[type=text]:not([readonly]):not(.browser-default):focus
+  @extend %input-design
+  box-shadow: none
+
+.input__registration input[type=password]
+  @extend %input-design
+
+.input__registration input[type=password]:not([readonly]):not(.browser-default):focus
+  @extend %input-design
+  box-shadow: none
+
+.input__registration
+ & > input[type=text]:not([readonly]):not(.browser-default)
+    @extend %input-design
+    box-shadow: none
+    &:focus
+      @extend %input-design
+    &:valid
+      @extend %input-design
+    &:invalid
+      @extend %input-design
+      border-color: red
+ .select-wrapper
+        input.select-dropdown
+          @extend %input-design
+          &:focus
+            @extend %input-design
+        .caret
+          fill: $primary-color
+
+.input__label
+  margin-left: 14px
+  padding-left: 4px
+  padding-right: 4px
+  padding-bottom: 4px
+  color: $primary-color
+  background-color: white
+
+.text__input--usual
+  @extend .text--usual
+  margin-top: 17px

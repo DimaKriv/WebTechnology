@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>road</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.min.css"/>
+    <link type="text/css" rel="stylesheet" href="assets/main.css">
+    <script src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                let elems = document.querySelectorAll("select");
+                M.FormSelect.init(elems, elems.options);
+            });
+            document.addEventListener("DOMContentLoaded", function() {
+                let el = document.querySelectorAll('.chips');
+                M.Chips.init(el, el.options);
+            });
+        </script>
+    </head>
+<body class="container__source">
+<nav class="nav-extended">
+    <div class="nav-wrapper navbar__menu--small">
+        <span class="brand-logo center text__logo--black">Marsruut</span>
+        <ul class="hide-on-med-and-up left">
+            <li><a href="#" class="text__logo--black"><i class="material-icons left ">menu</i></a></li>
+        </ul>
+        <ul class="hide-on-med-and-up right">
+            <li><a href="#" class="btn btn-small button__secondary--small">1.90 &euro;
+                <i class="material-icons right">add</i></a></li>
+        </ul>
+        <ul class="hide-on-small-and-down right">
+            <li><a href="#" class="btn btn-small button__secondary--small">1.90 &euro;</a></li>
+            <li><a  href="#" class="btn btn-small button__secondary--small"><i class="material-icons center">add</i></a></li>
+        </ul>
+    </div>
+    <div class="nav-content navbar__menu--small hide-on-small-and-down nav__tab--black">
+        <ul class="tabs tabs-transparent">
+            <li class="tab"><a>Konstrueri marsruut</a></li>
+            <li class="tab"><a>Serverist</a></li>
+            <li class="tab"><a>Jälgitud kauplused</a></li>
+            <li class="tab"><a>Kontaktid</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container__source--border">
+    <div class="container">
+        <div class = 'row'>
+            <div class="text--usual col s12 section">Tee jälgimine</div>
+            <img src="assets/img/map_3.png" class="container__map col s12 m6" id="map"/>
+            <div class="col s12 m5">
+            <div class="col s12 center" >
+                    <ul class="collection list__box">
+                        <li class="collection-item">Maxima<label class="right"><input type="checkbox"/><span></span>
+                        </label></li>
+                        <li class="collection-item">Selver<input type="checkbox"/>
+                            <label class="right"><input type="checkbox"/><span></span>
+                            </label></li>
+                    </ul>
+            </div>
+            <div class="col s12 center">
+                <a class="btn-large waves-effect waves-light button__secondary" href="toode_valimine.html">
+                    Muuta ostu korv</a>
+            </div>
+            <div class="div__delimeter--hidden waves-effect waves-light col s12">delim</div>
+            <div class="col s12 center" >
+                <a class="btn-large waves-effect waves-light button__primary" href="thank.html">Lõpeta tee</a>
+        </div>
+            </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

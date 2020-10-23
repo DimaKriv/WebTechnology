@@ -1,0 +1,21 @@
+@use "sass:color"
+
+$neutral-grey: #C4C4C4
+$primary-color: #EDB808
+
+.select__filter
+  & > .select-wrapper
+    .caret
+      fill: $primary-color
+      z-index: 1
+    input.select-dropdown
+      border-color: $primary-color
+      background-color: $neutral-grey
+      border-radius: 4px 4px 0px 0px
+      margin-bottom: 0
+      padding-left: 10px
+    & > :focus
+      border-color: color.scale($primary-color, $lightness: 30%)
+      background-color: $neutral-grey
+      border-radius: 4px 4px 0px 0px
+      margin-bottom: 0

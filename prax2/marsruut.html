@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>marsruut</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.min.css"/>
+    <link type="text/css" rel="stylesheet" href="assets/main.css">
+    <script src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        let elems = document.querySelectorAll("select");
+        M.FormSelect.init(elems, elems.options);
+        });
+        document.addEventListener("DOMContentLoaded", function() {
+            let el = document.querySelectorAll('.chips');
+            M.Chips.init(el, el.options);
+        });
+    </script>
+</head>
+<body class="container__source">
+<nav class="nav-extended">
+    <div class="nav-wrapper navbar__menu--small">
+        <span class="brand-logo center text__logo--black">Marsruut</span>
+        <ul class="hide-on-med-and-up left">
+            <li><a href="#" class="text__logo--black"><i class="material-icons left ">menu</i></a></li>
+        </ul>
+        <ul class="hide-on-med-and-up right">
+            <li><a href="#" class="btn btn-small button__secondary--small">1.90 &euro;
+                <i class="material-icons right">add</i></a></li>
+        </ul>
+        <ul class="hide-on-small-and-down right">
+            <li><a href="#" class="btn btn-small button__secondary--small">1.90 &euro;</a></li>
+            <li><a  href="#" class="btn btn-small button__secondary--small"><i class="material-icons center">add</i></a></li>
+        </ul>
+    </div>
+    <div class="nav-content navbar__menu--small hide-on-small-and-down nav__tab--black">
+        <ul class="tabs tabs-transparent">
+            <li class="tab"><a>Konstrueri marsruut</a></li>
+            <li class="tab"><a>Serverist</a></li>
+            <li class="tab"><a>Jälgitud kauplused</a></li>
+            <li class="tab"><a>Kontaktid</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container__source--border">
+    <div class="container">
+    <div class = 'row'>
+        <div class="text--usual col s12 section">Vali tee lõpppunkt</div>
+        <img src="assets/img/map.png" onclick="next_point()" id="map" class="container__map col s12 m6"/>
+        <div class="col s12 m5">
+                <div class="input-field offset-s2 col s8 select__filter">
+                    <select id="filter">
+                        <option value="" disabled selected>Vali filter</option>
+                        <option value="kiirem kui 15min">kiirem kui 15min</option>
+                        <option value="soodusega">soodusega</option>
+                        <option value="vegan">vegan</option>
+                    </select>
+                </div>
+                <div class=" col s12" id="chip_group">
+                    <span class="div__delimeter--hidden div__delimeter--lg-height">del</span>
+                </div>
+                    <div class="col s12 center">
+                    <a class="btn-large waves-effect waves-light button__primary--lg-width disabled" id="construct-btn"
+                   href="toode_valimine.html">
+                    <i class="material-icons left">location_on</i>Loo marsruut</a>
+                    </div>
+        </div>
+    </div>
+    </div>
+</div>
+<script>
+
+    var map_index = 0;
+
+    function next_point() {
+        if (map_index < 2) {
+            let image = ['assets/img/map_1.png', 'assets/img/map_2.png'];
+            let map = document.getElementById('map');
+            map.removeAttribute('src');
+            map.setAttribute('src', image[map_index]);
+            map_index += 1;
+            if (map_index === 2) {
+                document.getElementById('construct-btn').classList.remove('disabled');
+            }
+        }
+    }
+
+    function create_chip(val) {
+        if (document.getElementById( val + '-filter') !== null) {
+            return
+        }
+        let chip_group = document.getElementById("chip_group");
+        let _chip = document.createElement("div");
+        _chip.setAttribute('id', val + '-filter');
+        _chip.classList.add("chip");
+        _chip.classList.add("chip--primary");
+        _chip.innerHTML = val + "<i class='close material-icons'>close</i>";
+        chip_group.appendChild(_chip);
+    }
+    document.getElementById("filter").setAttribute('onchange'
+        , "create_chip(this.options[this.selectedIndex].value)");
+</script>
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en" class="container--height">
+<head>
+    <meta charset="UTF-8">
+    <title>valimine</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.min.css"/>
+    <link type="text/css" rel="stylesheet" href="assets/main.css">
+    <script src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
+    <script>
+        function getRecipe() {
+            document.getElementById('tab_recipe').classList.add('active');
+            document.getElementById('tab_product').classList.remove('active');
+            document.getElementById('recipe').classList.remove('hide-on-small-and-down');
+            document.getElementById('product').classList.add('hide-on-small-and-down');
+            document.getElementById('li_tab_product').classList.remove('active');
+            document.getElementById('li_tab_recipe').classList.add('active');
+        }
+
+        function getProduct() {
+            document.getElementById('tab_recipe').classList.remove('active');
+            document.getElementById('tab_product').classList.add('active');
+            document.getElementById('recipe').classList.add('hide-on-small-and-down');
+            document.getElementById('product').classList.remove('hide-on-small-and-down');
+            document.getElementById('li_tab_product').classList.add('active');
+            document.getElementById('li_tab_recipe').classList.remove('active');
+        }
+    </script>
+</head>
+<body class="container__source container--height">
+    <nav class="nav-extended">
+        <div class="nav-wrapper navbar__menu--small">
+            <span class="brand-logo center text__logo--black">Vali produkt</span>
+            <ul class="hide-on-med-and-up left">
+                <li><a href="#" class="text__logo--black"><i class="material-icons left ">menu</i></a></li>
+            </ul>
+            <ul class="hide-on-med-and-up right">
+                <li><a href="#" class="btn btn-small button__secondary--small">1.90 &euro;
+                    <i class="material-icons right">add</i></a></li>
+            </ul>
+            <ul class="hide-on-small-and-down right">
+                <li><a href="#" class="btn btn-small button__secondary--small">1.90 &euro;</a></li>
+                <li><a  href="#" class="btn btn-small button__secondary--small"><i class="material-icons center">add</i></a></li>
+            </ul>
+        </div>
+            <div class="nav-content navbar__menu--small hide-on-med-and-up">
+                <ul class="tabs tabs-transparent">
+                    <li class="tab active" id="li_tab_product"><a class="active" href="#product" id="tab_product" onclick="getProduct()">Toodeid</a></li>
+                    <li class="tab" id="li_tab_recipe"><a href="#recipe" id="tab_recipe" onclick="getRecipe()">Retseptid</a></li>
+                </ul>
+        </div>
+        <div class="nav-content navbar__menu--small hide-on-small-and-down nav__tab--black">
+            <ul class="tabs tabs-transparent">
+                <li class="tab"><a>Konstrueri marsruut</a></li>
+                <li class="tab"><a>Serverist</a></li>
+                <li class="tab"><a>Jälgitud kauplused</a></li>
+                <li class="tab"><a>Kontaktid</a></li>
+            </ul>
+        </div>
+    </nav>
+<div class="container__source--border-full container__source--border container--height">
+    <div class="container">
+    <div class="row">
+    <ul class="collection col s12 m6" id="product">
+        <li class="collection-item avatar" id="product1" value="50">
+            <img alt="" class="img__product img__product--0 circle"/>
+            <p>väiksem varajane<br> kapsapea</p>
+            <span class="secondary-content">0.50 €</span></li>
+        <li class="collection-item avatar" id="product2" value="201">
+            <img alt="" class="img__product img__product--1 circle"/>
+            <span>suitsupeekon</span>
+            <span class="secondary-content">2.01 €</span></li>
+        <li class="collection-item avatar" id="product3" value="60">
+            <img alt="" class="img__product img__product--2 circle"/>
+            <span>rõtsa koor</span>
+            <span class="secondary-content">0.60 €</span>
+        </li>
+        <li class="collection-item avatar" id="product4" value="20">
+            <img alt="" class="img__product img__product--3 circle"/>
+            <span>makaroonid</span>
+            <span class="secondary-content">0.20 €</span>
+        </li>
+    </ul>
+    <ul id="recipe" class="collection hide-on-small-and-down col s12 m6">
+        <li class="collection-item avatar" value="product1;product2;product3">
+            <img alt="" class="img__product img__product--4 circle"/>
+            <span>Kapsas peekoniga</span>
+            <span class="secondary-content">3.11 €</span>
+        </li>
+    </ul>
+    </div>
+    </div>
+    <div align="center">
+    <a class="btn btn-large button__primary--lg-width button--extra-width" id="shop_cart" href="road_controll.html">
+        <i class="material-icons left">shopping_cart</i>Vali toodeid(<span id="sum">0.00</span>&euro;)</a>
+    </div>
+</div>
+
+<script>
+    class Chosen {
+        constructor(dom) {
+            this.dom = dom;
+            this.is_chosen = false;
+            let products = this.dom.querySelectorAll('.img__product');
+            if (products[0].getAttribute('src') != null) {
+                this.deactivate();
+                this.activate();
+            }
+        }
+
+        activate() {
+            if (this.is_chosen === false) {
+                let el = this.dom.querySelectorAll('.img__product');
+                el.forEach(product => product.setAttribute('src', 'assets/img/choosen_product_alt.png'));
+            }
+        }
+
+        deactivate() {
+            if (this.is_chosen === true) {
+                let el = this.dom.querySelectorAll('.img__product');
+                el.forEach(product => product.removeAttribute('src'));
+            }
+        }
+
+        change_activity() {
+            if (this.is_chosen) {
+                this.deactivate();
+            }
+            else {
+                this.activate();
+            }
+            this.is_chosen = !this.is_chosen;
+        }
+
+    }
+
+    class Combiner {
+        constructor(dom) {
+            this.dom = dom;
+            this.value = 0;
+        }
+        add(val) {
+            this.value += val;
+            this.value = Math.round((this.value + Number.EPSILON) * 100) / 100;
+            this.modifyUI(this.value);
+        }
+        substract(val) {
+            this.value -= val;
+            this.value = Math.round((this.value + Number.EPSILON) * 100) / 100;
+            this.modifyUI(this.value);
+        }
+        modifyUI(val) {
+            let val_str = val.toString();
+            let dot_index = val_str.indexOf('.');
+            if (dot_index === -1) {
+                val_str += '.00';
+            }
+            else if ((val_str.length - dot_index) === 2) {
+                val_str += '0';
+            }
+            // alert(val_str);
+            this.dom.innerHTML = val_str;
+        }
+    }
+
+    class Product extends Chosen{
+        constructor(dom, value, combiner) {
+            super(dom);
+            this.value = value;
+            this.combiner = combiner;
+            this.connect_recipe =  [];
+        }
+
+        activate() {
+            if (this.is_chosen === false) {
+                super.activate();
+                this.combiner.add(this.value);
+            }
+        }
+
+        deactivate() {
+            if (this.is_chosen === true) {
+                super.deactivate();
+                for (let recipe of this.connect_recipe) {
+                    recipe.uncheck();
+                    recipe.is_chosen = false;
+                }
+                this.combiner.substract(this.value);
+            }
+        }
+
+        add_connected_recipe(recipe) {
+            this.connect_recipe.push(recipe);
+        }
+    }
+
+    class Recipe extends Chosen{
+        constructor(dom, list_ingredient, dict_products) {
+            super(dom);
+            this.list_products = [];
+            for(let ingredient of list_ingredient) {
+                 this.list_products.push(dict_products[ingredient]);
+                 dict_products[ingredient].add_connected_recipe(this);
+            }
+        }
+
+        activate() {
+            super.activate();
+            for (let t_product of this.list_products) {
+                t_product.activate();
+                t_product.is_chosen = true;
+            }
+        }
+
+        deactivate() {
+            super.deactivate();
+            for (let t_product of this.list_products) {
+                t_product.deactivate();
+                t_product.is_chosen = false;
+            }
+        }
+
+        uncheck() {
+            super.deactivate();
+        }
+    }
+    let combiner = new Combiner(document.getElementById('sum'));
+    let ingridients = {};
+    let products = document.querySelectorAll('#product > li');
+    let t_product = null;
+    for (t_product of products) {
+        let val = parseFloat(t_product.getAttribute('value')) / 100;
+     let obj_product = new Product(t_product, val, combiner);
+     t_product.addEventListener('click', function() {obj_product.change_activity()});
+     ingridients[t_product.getAttribute('id')] = obj_product;
+    }
+    let recipes = document.querySelectorAll('#recipe >  li');
+    for (let t_recipe of recipes) {
+        let str_ingridients = t_recipe.getAttribute('value');
+        let list_ingridients = str_ingridients.split(';');
+        let obj_recipe = new Recipe(t_recipe, list_ingridients, ingridients);
+        t_recipe.addEventListener('click', function() {obj_recipe.change_activity()});
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+{
+"shops": [
+  {
+    "id": 0,
+    "name": "Maxima",
+    "location": {"lat": 59.26111, "lon": 24.45111},
+    "products": [0, 1]
+  },
+  {
+    "id": 1,
+    "name": "Selver",
+    "location": {"lat": 59.26110, "lon": 24.45110},
+    "products": [2, 3]
+  },
+  {
+    "id": 2,
+    "name": "Rimi",
+    "location": {"lat": 59.26200, "lon": 24.45200},
+    "products": [0, 3]
+  }],
+  "products": [
+    {
+      "id": 0,
+      "name": "varajane kapsas",
+      "price": 0.5,
+      "image": "assets/cabage.jpg",
+      "category": ["soodusega"]
+    },
+    {
+      "id": 1,
+      "name": "suitsupeekon",
+      "price": 2.01,
+      "image": "assets/beef.jpg",
+      "category": ["soodusega"]
+    },
+    {
+      "id": 2,
+      "name": "vahu koor",
+      "price": 0.6,
+      "image": "assets/foam_cream.png",
+      "category": ["soodusega"]
+    },
+    {
+      "id": 3,
+      "name": "makaronid",
+      "price": 0.2,
+      "image": "assets/pasta.jpg",
+      "category": []
+    }
+  ],
+  "recipes": [
+    {
+      "id": 0,
+      "name": "Kapsas peekoniga",
+      "image": "assets/cabage_beef.jpg",
+      "products": [[0], [1], [2]],
+      "category": ["soodusega"]
+    }
+  ]
+}

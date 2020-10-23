@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>registration</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.min.css"/>
+    <link type="text/css" rel="stylesheet" href="assets/main.css">
+    <script type="text/javascript" src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
+    <script type="text/javascript" src="assets/js/payment_choose.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let elems = document.querySelectorAll('select');
+            M.FormSelect.init(elems, elems.options);
+        });
+    </script>
+</head>
+<body class="container__source">
+<nav class="nav-extended">
+    <div class="nav-wrapper navbar__menu--small">
+        <span class="brand-logo center text__logo--black">Regestrerimine</span>
+        <ul class="hide-on-med-and-up left">
+            <li><a href="#" class="text__logo--black"><i class="material-icons left ">menu</i></a></li>
+        </ul>
+    </div>
+    <div class="nav-content navbar__menu--small hide-on-small-and-down nav__tab--black">
+        <ul class="tabs tabs-transparent">
+            <li class="tab"><a>Logi sisse</a></li>
+            <li class="tab"><a>Serverist</a></li>
+            <li class="tab"><a>Jälgitud kauplused</a></li>
+            <li class="tab"><a>Kontaktid</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container__source--border">
+    <div class="container">
+        <div class="row">
+            <div class="col s6 m3 text__input--usual">
+                Nimi:
+            </div>
+            <div class="input-field col s6 m3 input__registration">
+                <input placeholder="Kirjuta eesnimi" id="first_name" type="text" class="validate">
+                <label for="first_name" class="active"><span class="input__label">nimi</span></label>
+            </div>
+            <div class="col s6 m3 text__input--usual">
+                Perenmi:
+            </div>
+            <div class="input-field col s6 m3 input__registration">
+                <input placeholder="Kirjuta perenimi" id="last_name" type="text" class="validate">
+                <label for="last_name" class="active"><span class="input__label">perenimi</span></label>
+            </div>
+            <div class="col s6 m3 text__input--usual">
+                Kasutaja nimi:
+            </div>
+            <div class="input-field col s6 m3 input__registration">
+                <input placeholder="Kasutaja tunnus" id="user_name" type="text" class="validate">
+                <label for="user_name" class="active"><span class="input__label">kasutaja</span></label>
+            </div>
+            <div class="col s6 m3 text__input--usual">
+                Parool:
+            </div>
+            <div class="input-field col s6 m3 input__registration">
+                <input placeholder="Lisa parool" id="password" type="text" class="validate">
+                <label for="password" class="active"><span class="input__label">parool</span></label>
+            </div>
+            <div class="col s6 m3 text__input--usual">
+                Makse viis:
+            </div>
+            <div class="input-field col s6 m3 input__registration">
+<!--                <input id="pay-method" type="text" class="select-dropdown dropdown-trigger" readonly="true">-->
+                <label class="active label__select" ><span class="input__label">maksmine</span></label>
+                <select id="payment-select">
+                    <option value="" disabled selected>Vali makse viis</option>
+                    <option value="visa">Visa</option>
+                    <option value="master-card">MasterCard</option>
+                    <option value="paypal">PayPal</option>
+                </select>
+            </div>
+
+
+            <div class="div__payment" id="visa-div">
+                <div class="col s6 m3 text__input--usual"> Kaardi num:</div>
+                    <div class="input-field col s6 m3 input__registration">
+                        <input placeholder="Kaardi number" id="card-num" type="text" class="validate">
+                        <label for="card-num" class="active"><span class="input__label">kaard</span></label>
+                    </div>
+                <a class="waves-effect waves-light btn-small button__primary--small-right-align" href="marsruut.html">Loo konto</a>
+            </div>
+
+            <div class="div__payment" id="paypal-div">
+                <div class="col s6 m3 text__input--usual"> Kaardi num:</div>
+                <div class="input-field col s6 m3 input__registration">
+                    <input placeholder="Kaardi number" id="card-num2" type="text" class="validate">
+                    <label for="card-num2" class="active"><span class="input__label">kaard</span></label>
+                </div>
+                <div class="col s6 text__input--usual"> CSV kood:</div>
+                <div class="input-field col s6 m3 input__registration">
+                    <input placeholder="Sissest csv kood" id="protect-code" type="text" class="validate">
+                    <label for="protect-code" class="active"><span class="input__label">csv</span></label>
+                </div>
+                <a class="waves-effect waves-light btn-small button__primary--small-right-align" href="marsruut.html">Loo konto</a>
+            </div>
+
+            <div class="div__payment" id="master-div">
+                <div class="col s6 m3 text__input--usual"> Kaardi num:</div>
+                <div class="input-field col s6 m3 input__registration">
+                    <input placeholder="Kaardi number" id="card-num3" type="text" class="validate">
+                    <label for="card-num3" class="active"><span class="input__label">kaard</span></label>
+                </div>
+                <a class="waves-effect waves-light btn-small button__primary--small-right-align" href="marsruut.html">
+                    Loo konto</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    let el = document.getElementById('payment-select');
+    el.setAttribute('onchange', 'choose_payment(this.options[this.selectedIndex].value)');
+</script>
+</body>
+</html>
